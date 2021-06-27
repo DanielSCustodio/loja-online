@@ -383,7 +383,6 @@ class Element_Section extends Element_Base {
 				'default' => 'default',
 				'options' => [
 					'default' => __( 'Default', 'elementor' ),
-					'full' => __( 'Fit To Screen', 'elementor' ),
 					'min-height' => __( 'Min Height', 'elementor' ),
 				],
 				'prefix_class' => 'elementor-section-height-',
@@ -411,7 +410,6 @@ class Element_Section extends Element_Base {
 				'condition' => [
 					'height_inner' => [ 'min-height' ],
 				],
-				'size_units' => [ 'px', 'vh', 'vw' ],
 				'hide_in_top' => true,
 			]
 		);
@@ -1448,7 +1446,7 @@ class Element_Section extends Element_Base {
 	public function before_render() {
 		$settings = $this->get_settings_for_display();
 		?>
-		<<?php echo $this->get_html_tag(); ?> <?php $this->print_render_attribute_string( '_wrapper' ); ?>>
+		<<?php echo esc_html( $this->get_html_tag() ); ?> <?php $this->print_render_attribute_string( '_wrapper' ); ?>>
 			<?php
 			if ( 'video' === $settings['background_background'] ) :
 				if ( $settings['background_video_link'] ) :
@@ -1514,7 +1512,7 @@ class Element_Section extends Element_Base {
 				</div>
 		<?php } ?>
 			</div>
-		</<?php echo $this->get_html_tag(); ?>>
+		</<?php echo esc_html( $this->get_html_tag() ); ?>>
 		<?php
 	}
 
@@ -1573,7 +1571,7 @@ class Element_Section extends Element_Base {
 			$html_tag = 'section';
 		}
 
-		return Utils::validate_html_tag( $html_tag );
+		return $html_tag;
 	}
 
 	/**
